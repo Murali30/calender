@@ -1,0 +1,23 @@
+<div class="add-event-margin">
+    <div class="new-label"><span>New event for the date {{month}}/{{day}}/{{year}}</span></div>
+    <input type="hidden" id="dateValue" name="dateValue" value="{{dateToAdd}}">
+    <div class="view-label"><span>Title</span></div>
+    <div class="field-text"><input type="text" class="form-control" placeholder="E.g.Buy Ink" id="title" name="title" value="{{title}}"/></div>
+    <div class="view-label"><span>Location</span></div>
+    <div class="field-text"><input type="text" class="form-control" placeholder="E.g.Staples" id="location" name="location" value="{{location}}"/></div>
+    <div class="view-label"><span>Description</span></div>
+    <div class="field-text"><textarea class="form-control" placeholder="E.g.Need to buy before 7 to get in the offer rate" id="description" name="description" value="{{description}}"></textarea></div>
+
+    <div class="btn-margin">
+	  	<div class="error error-danger hidden " id="sp-error-container-down">
+			<div  id="sp-error-text-down" ></div>
+		 </div>
+		<div class="form-group form-grp-div"><div class="add-btn-div"><button type="submit" id="addEvent" class="add-btn">Add</button></div>
+        {{#if monthCheck}}
+        <div class="btn-value"><a href="/monthly/" id="goHome" class="home-btn">Home</a></div>
+        {{else}}
+        <div class="btn-value"><a href="/daily/" id="goHome" class="home-btn">Home</a></div>
+        {{/if}}
+        </div>
+    </div>
+</div>

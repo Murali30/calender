@@ -1,0 +1,63 @@
+<div class="container">
+	<div class="firstRow">
+		<div class="monthDisplay">
+			 
+        <ul>
+            <li class="prev"><form id="prevMonth-form" method="get" action="/monthly/prev"><button type="submit" id="prevMonth" class="btn btn-default">&#10094;</button></form></li>
+            <li class="next"><form id="nextMonth-form" method="get" action="/monthly/next"><button type="submit" id="nextMonth" class="btn btn-default">&#10095;</button></form></li>
+            <li>
+				{{currentMonth}}<br>
+                <span style="font-size:18px">{{currentYear}}</span>
+            </li>
+        </ul>
+
+		</div>
+		<div class="addEvent">
+			<form id="addEvnt-form" method="post" action="/monthly/addevent">
+			<input type="hidden" id="dateValue" name="dateValue" value="{{dateValue}}">
+			<input type="hidden" id="checkValue" name="checkValue" value="Y">
+			<button type="submit" id="p-submit" class="eventBtn">AddEvent</button>
+			</form>
+		</div>
+
+	</div>
+
+	<div class="calenderData">
+			<div class="dayRow"><div><div><span>Sun</span></div></div></div>
+			<div class="dayRow"><div><div><span>Mon</span></div></div></div>
+			<div class="dayRow"><div><div><span>Tue</span></div></div></div>
+			<div class="dayRow"><div><div><span>Wed</span></div></div></div>
+			<div class="dayRow"><div><div><span>Thu</span></div></div></div>
+			<div class="dayRow"><div><div><span>Fri</span></div></div></div>
+			<div class="dayRow"><div><div><span>Sat</span></div></div></div>
+			{{#each prevMonth}}
+				<div class=" grid-cell previous-month"><div><div><span>{{this.day}}</span></div></div></div>
+			{{/each}}
+
+			{{#each currMonth}}
+				{{#if this.events.events}}
+				<div class=" grid-cell">
+				{{else}}
+				<div class=" grid-cell no-events">
+				{{/if}}
+					<div>
+						<div>
+							<span>{{this.day}}</span>
+							<div>
+								{{#each this.events.events}}
+									<div>{{this.title}}</div>
+								{{/each}}
+							</div>
+						</div>
+					</div>
+				</div>
+			{{/each}}
+
+			{{#each nextMonth}}
+				<div class=" grid-cell next-month"><div><div><span>{{this.day}}</span></div></div></div>
+			{{/each}}	
+			
+			
+	</div>
+</div>
+</div>

@@ -1,0 +1,13 @@
+<div class="viewevent">
+    <div class="event-col view-label"><span>Event Name:</span></div>
+    <div class="event-col field-value"><span>{{event.title}}</span></div>
+    <div class="event-col view-label"><span>Date:</span></div>
+    <div class="event-col field-value"><form id="specDate-form" method="get" action="/daily/{{event.date}}">
+    <input type="hidden" id="dateVal" name="dateVal" value="{{event.date}}">
+    <button type="submit" id="specDay" class="view-date"><span>{{event.dateDisplay}}</span></button></form></div>
+    <div class="event-col view-label"><span>Location:</span></div>
+    <div class="event-col field-value"><span>{{event.location}}</span></div>
+    <div class="event-col view-label"><span>Description:</span></div>
+    <div class="event-col field-value"><span>{{event.description}}</span></div>
+    
+</div>

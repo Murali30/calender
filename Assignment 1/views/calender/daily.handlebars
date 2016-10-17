@@ -1,0 +1,43 @@
+<div class="dailyContainer">
+    <div class="events">
+        <div class="eventList">
+            <div><span> Events for {{today.namedDay}}, {{today.namedMonth}} {{today.day}}</span></div>
+            {{#each today.events.events}}
+                <div><span> title: {{this.title}}</span></div>
+                <div><span> location: {{this.location}}</span></div>
+                <div><span> description: {{this.description}}</span></div>
+                <!--<div><span> Event 1</span></div>
+                <div><span> Event 2</span></div>
+                <div><span> Event 3</span></div>-->
+            {{/each}}
+            <div class="addEvent">
+			<form id="addEvnt-form" method="post" action="/monthly/addevent">
+			<input type="hidden" id="dateValue" name="dateValue" value="{{dateValue}}">
+            <input type="hidden" id="checkValue" name="checkValue" value="N">
+			<button type="submit" id="p-submit" class="btn btn-default">AddEvent</button>
+			</form>
+		    </div>
+
+        </div>
+        <div class="futureInformation">
+            <div><span>This {{today.namedDay}} is the {{today.nthDay}}th day of this year</span></div>
+            <div><span>There are {{today.nthDayRemaining}} days left in {{today.year}}</span></div>
+        </div>
+    </div>
+    <div class="dateValues">
+
+            <div class=" grid-cell"><div><div><form id="prevDate-form" method="get" action="/daily/prev"><button type="submit" id="prevDay" class="btn btn-default"><span>&#10094;</span></button></form></div></div></div>
+            {{#each previousDays}}
+            <div class=" grid-cell"><div><div><span>{{this.day}} / {{this.month}}</span></div></div></div>
+            {{/each}}
+
+			<div class=" grid-cell"><div><div><span>{{today.day}} / {{today.month}}</span></div></div></div>
+
+            {{#each nextDays}}
+            <div class=" grid-cell"><div><div><span>{{this.day}} / {{this.month}}</span></div></div></div>
+            {{/each}}
+
+			<div class=" grid-cell"><div><div><form id="nextDate-form" method="get" action="/daily/next"><button type="submit" id="nextDay" class="btn btn-default"><span>&#10095;</span></button></form></div></div></div>
+			
+    </div>
+</div>
