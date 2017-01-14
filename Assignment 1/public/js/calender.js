@@ -54,11 +54,7 @@ addEvent.click(function(event){
                   	createErrorText.text(responseMessage.message);
             		createErrorContainer.removeClass("hidden");
                  }else if(responseMessage.success){
-                     alert(responseMessage.addedEvent);
                      window.location="http://localhost:3000/monthly/getEvent/"+responseMessage.addedEvent;
-                    //createErrorContainer.addClass("hidden");
-                   	//createSuccessText.text(responseMessage.message);
-            		//createResultContainer.removeClass("hidden");
                  }
                 
             });

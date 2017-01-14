@@ -1,11 +1,5 @@
 $body-background: white;
-$primary-color: #333;
-$secondary-color: #FFC0A9;
-
 $primary-font-size: 20pt;
-$secondary-font-size: $primary-font-size * .9;
-
-$primary-row-size: 700px;
 
 $small-size: 0px;
 $medium-size: 401px;
@@ -14,6 +8,9 @@ $large-size: 1001px;
 $prefix-small: "sm";
 $prefix-medium: "md";
 $prefix-large: "lg";
+
+$fontFamily: "Arial,Helvetica,sans-serif";
+$fontColor: #530c87;
 
 
 * {
@@ -29,7 +26,7 @@ $prefix-large: "lg";
 
 body, html {
     background: $body-background;
-    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: $fontFamily;
     font-size: $primary-font-size;
     width:100%;
 }
@@ -67,29 +64,31 @@ body, html {
 }
 
 /* Month list */
-.monthDisplay ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
+.monthDisplay{
+    display:flex;
+    flex-direction: row;
 }
 
-.monthDisplay ul li {
-    font-size: 20px;
+.monthDisplay .monthValue {
+    width:60%;
+    font-size: 15px;
     text-transform: uppercase;
-    letter-spacing: 3px;
     text-align: center;
+    font-family: Arial,Helvetica,sans-serif;
+    color: #530c87;
 }
 
 /* Previous button inside month header */
 .monthDisplay .prev {
-    float: left;
-    padding-top: 10px;
+  width:20%;
 }
 
 /* Next button */
 .monthDisplay .next {
-    float: right;
-    padding-top: 10px;
+  >div{
+    float:right;
+  }
+  width:20%;
 }
 
 .eventBtn{
@@ -99,21 +98,18 @@ body, html {
         @extend %custom-button-hover;
 }
 
-  @media screen and (min-width: 1001px) {
-.container{
+  @media screen and (min-width: $large-size) {
+  .container{
   display: flex;
-  border: 5px solid lightgreen;
   width: 100%;
   flex-direction: column;
-  //min-height: 1000px;
-  
-  
+  min-height: 1000px;
   .firstRow{
-    border: 1px solid red;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     min-height: 20%;
+    margin-top:10px;
     .monthDisplay{
       width: 30%;
     }
@@ -123,115 +119,17 @@ body, html {
   }
   .calenderData{
     display: flex;
-    border: 1px solid black;
     min-height: 80%;
     flex-wrap: wrap;
     
-  }
-}
-}
-
-@media screen and (min-width: 401px) and (max-width:1000px) {
-.container{
-  display: flex;
-  border: 5px solid lightgreen;
-  width: 100%;
-  flex-direction: column;
-  //min-height: 1000px;
-  
-  
-  .firstRow{
-    border: 1px solid red;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    min-height: 20%;
-    .monthDisplay{
-      width: 30%;
-    }
-    .addEvent{
-      width: 20%
-    }
-  }
-  .calenderData{
-    display: flex;
-    border: 1px solid black;
-    min-height: 80%;
-    flex-wrap: wrap;
-    
-  }
-}
-}
-
-@media screen and (min-width: 0px) and (max-width:400px){
-.container{
-  display: flex;
-  border: 5px solid lightgreen;
-  width: 100%;
-  flex-direction: column-reverse;
-  height: 800px;
-  
-  
-  .firstRow{
-    border: 1px solid red;
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-between;
-    min-height: 100px;
-    position:absolute;
-    width:100%;
-    .monthDisplay{
-      width: 100%;
-    }
-    .addEvent{
-      width: 100%;
-      .eventBtn{
-        width:100%;
-      }
-      }
-    }
-  
-  .calenderData{
-    display: flex;
-    border: 1px solid black;
-    min-height: 100%;
-    position:relative;
-    padding-bottom: 100px;
-    overflow: scroll;
-    flex-direction: column;
-    .dayRow {
-      display:none;
-    }
-    .previous-month{
-      display:none;
-    }
-    .next-month{
-      display:none;
-    }
-    .no-events{
-      display:none;
-    }
-    .grid-cell{
-      width:100%;
-      margin:2px;
-
-    }
-  }
-}
-}
-
-.calenderData {
-
-  .grid-cell {
-    min-height: 1px;
-    padding: 0;
+    .grid-cell {
     position: relative;
     width: 13.65%;
     margin:1px;
     border: 1px solid black;
 
     &.previous-month {
-      color: #a6a6a6;
+      background-color: #e1e1e1;
     }
     
     &.next-month {
@@ -249,20 +147,228 @@ body, html {
           position: absolute; 
           left: 0; 
           top: 0;
+          font-family: $fontFamily;
+          font-size:20px;
         }
-        >div{
-          font-size: 15px;
+        .dayIngrid{
+          color: $fontColor;
+        }
+        .dateIngrid{
+          display: none;
+        }
+        .dayevents{
+           font-size: 15px;
+           font-family: $fontFamily;
            width:95%;
            height: 85%;
-        position: absolute; margin: auto;
-           background: green;
-    top :30px; left: 10px; bottom:0px;
+           position: absolute; margin: auto;
+           top :30px; left: 10px; bottom:$small-size;
+           overflow:hidden;
+        }
+        >div:hover{
+          overflow-y:scroll; 
         }
       }
         
     }
   }
 
+  }
+}
+}
+
+@media screen and (min-width: $medium-size) and (max-width:1000px) {
+  .container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    min-height: 1000px;
+  
+    .firstRow{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      min-height: 20%;
+      margin-top:10px;
+
+      .monthDisplay{
+        width: 50%;
+      }
+      .addEvent{
+        width: 40%
+      }
+    }
+    
+    .calenderData{
+      margin-top:10px;
+      display: flex;
+      min-height: 80%;
+      flex-wrap: wrap;
+
+      .grid-cell {
+        position: relative;
+        width: 13.65%;
+        margin:1px;
+        border: 1px solid black;
+
+      &.previous-month {
+        color: #a6a6a6;
+      } 
+      &.next-month {
+        background-color: #e1e1e1;
+      }
+    
+      > div {
+        width: 100%;
+      > div {
+        height: 0;
+        padding: 50%;
+        position:relative;
+        >span{
+          position: absolute; 
+          left: 0; 
+          top: 0;
+          font-family: $fontFamily;
+          font-size:20px;
+        }
+        .dayIngrid{
+          color: $fontColor;
+        }
+        .dateIngrid{
+          display: none;
+        }
+        .dayevents{
+           font-size: 15px;
+           font-family: $fontFamily;
+           width:95%;
+           height: 85%;
+           position: absolute; margin: auto;
+           top :30px; left: 10px; bottom:$small-size;
+           overflow:hidden;
+        }
+        >div:hover{
+          overflow:scroll; 
+        }
+      }
+        
+    }
+  }
+    
+  }
+}
+}
+
+#dayevents::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+#dayevents::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+#dayevents::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear,
+									   left bottom,
+									   left top,
+									   color-stop(0.44, rgb(122,153,217)),
+									   color-stop(0.72, rgb(73,125,189)),
+									   color-stop(0.86, rgb(28,58,148)));
+}
+
+
+
+@media screen and (min-width: $small-size) and (max-width:400px){
+.container{
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  width: 100%;
+  height: 500px;
+
+  .firstRow{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    min-height: 20%;
+    width:100%;
+    .monthDisplay{
+      width: 100%;
+      min-height: 40%;
+    }
+    .addEvent{
+      width: 100%;
+      min-height: 60%;
+        .eventBtn{
+          width:100%;
+        }
+      }
+    }
+  
+  .calenderData{
+    min-height: 80%;
+    
+    overflow-y: scroll; 
+    .dayRow {
+      display:none;
+    }
+    .previous-month{
+      display:none;
+    }
+    .next-month{
+      display:none;
+    }
+    .no-events{
+      display:none;
+    }
+    .grid-cell{
+      width:100%;
+      margin-top:2px;
+      border-bottom: 2px solid grey;
+      border-left: 2px solid grey;
+      border-right: 2px solid grey;
+      border-top: 2px solid grey;
+
+      > div {
+      width: 100%;
+        > div {
+          height: 150px;
+          overflow:hidden;
+            .dayIngrid{
+              display: none;
+            }
+            .dateIngrid{
+              font-family: $fontFamily;
+              color: $fontColor;
+              font-size:20px;
+              border-bottom:1px solid grey;
+            }
+            .dayevents{
+              font-family: $fontFamily;
+              font-size: 15px;
+              width:95%;
+              height: 85%;
+              margin: auto;
+              top :40px; left: 10px; bottom:5px;
+            }
+        }  
+        >div:hover{
+          overflow-y:scroll;
+        }
+      }
+
+    }
+  }
+}
+}
+
+.calenderData {
   .dayRow {
     min-height: 1px;
     padding: 0;
@@ -270,7 +376,9 @@ body, html {
     width: 13.65%;
     margin:1px;
     border:none;
-    
+    font-family: Arial,Helvetica,sans-serif;
+    color: #530c87;
+    font-size:25px;
     > div {
       width: 100%;
 
@@ -292,79 +400,287 @@ body, html {
 
 
 
-//Daily view of the calender
-.dailyContainer{
-  display: flex;
-  border: 5px solid lightgreen;
-  width: 100%;
-  flex-direction: column;
-
-  .events{
-    border: 1px solid red;
+//Daily view of the .calenderData
+@media screen and (min-width: $large-size) {
+  .dailyContainer{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    min-height: 80%;
-    .eventList{
-      width: 30%;
-    }
-    .futureInformation{
-      width: 20%
-    }
-  }
-  .dateValues{
-    display: flex;
-    border: 1px solid black;
-    min-height: 20%;
-    flex-wrap: wrap;
-    
-  }
-}
-
-.dateValues{
-  .grid-cell {
-    min-height: 1px;
-    padding: 0;
-    position: relative;
-    width: 13.65%;
-    margin:1px;
-    border: 1px solid black;
-
-    
-    > div {
-      width: 100%;
-
-      > div {
-        height: 0;
-        padding: 50%;
-        position:relative;
-        >span{
-          position: absolute; 
-          left: 0; 
-          top: 0;
+    width: 100%;
+    flex-direction: column;
+    font-family: Arial,Helvetica,sans-serif;
+    color: #530c87;
+    font-size: 20px;
+    height:600px;
+    .events{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      min-height: 80%;
+      .eventList{
+        width: 70%;
+        margin-left:50px;
+        margin-top:50px;
+        margin-right:10px;
+        .eventsTitle{
+          border-bottom: 2px solid grey;
+          font-size: 20px;
+        }
+        .eventsValue{
+          margin-top:10px;
+          font-size: 15px;
+          margin-left:10px;
+        }
+        .addEvent{
+          margin-bottom:10px;
+          margin-left:20px;
+          margin-top:40px;
+        }
+      }
+      .futureInformation{
+        width: 30%;
+        border-left: 2px solid grey;
+        margin-right:20px;
+        margin-top:55px;
+        margin-bottom:10px;
+        font-size: 15px;
+        >div{
+          margin-left:3px;
+          margin-top:10px;
         }
         
       }
+    }
+    .dateValues{
+      display: flex;
+      min-height: 20%;
+      flex-wrap: wrap;
+      border-top: 2px solid grey;
+      border-bottom: 2px solid grey;
+      justify-content: flex-end;
+      margin-bottom:10px;
+
+      .grid-cell {
+        min-height: 1px;
+        padding: 0;
+        position: relative;
+        width: 13.65%;
+        border-right:2px solid grey;
+        font-size: 15px;
         
+          > div {
+            width: 100%;
+          > div {
+            height: 0;
+            padding: 20%;
+            text-align:center;
+            position:relative;
+            margin-top:15px;
+              >span{
+                left: 0; 
+                top: 0;
+              }
+          }
+        }
+      }
+
+        .cur-day-year{
+          display: none;
+        }
+      
+    }
+  }
+}
+@media screen and (min-width: $medium-size) and (max-width:1000px) {
+  .dailyContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-family: Arial,Helvetica,sans-serif;
+    color: #530c87;
+    font-size: 20px;
+    height:600px;
+    .events{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      min-height: 80%;
+      .eventList{
+        width: 70%;
+        margin-left:50px;
+        margin-top:50px;
+        margin-right:10px;
+        .eventsTitle{
+          border-bottom: 2px solid grey;
+          font-size: 20px;
+        }
+        .eventsValue{
+          margin-top:10px;
+          font-size: 15px;
+          margin-left:10px;
+        }
+        .addEvent{
+          margin-bottom:10px;
+          margin-left:20px;
+          margin-top:40px;
+        }
+      }
+      .futureInformation{
+        width: 30%;
+        border-left: 2px solid grey;
+        margin-right:20px;
+        margin-top:55px;
+        margin-bottom:10px;
+        font-size: 15px;
+        >div{
+          margin-left:3px;
+          margin-top:10px;
+        }
+        
+      }
+    }
+    .dateValues{
+      display: flex;
+      min-height: 20%;
+      flex-wrap: wrap;
+      border-top: 2px solid grey;
+      border-bottom: 2px solid grey;
+      justify-content: flex-end;
+      margin-bottom:10px;
+
+      .grid-cell {
+        min-height: 1px;
+        padding: 0;
+        position: relative;
+        width: 13.65%;
+        border-right:2px solid grey;
+        font-size: 15px;
+        
+          > div {
+            width: 100%;
+          > div {
+            height: 0;
+            padding: 30%;
+            text-align:center;
+            position:relative;
+            margin-top:25px;
+              >span{
+                left: 0; 
+                top: 0;
+              }
+          }
+        }
+      }
+
+        .cur-day-year{
+          display: none;
+        }
+      
+    }
+  }
+}
+@media screen and (min-width: $small-size) and (max-width:400px){
+  .dailyContainer{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    font-family: Arial,Helvetica,sans-serif;
+    color: #530c87;
+    height:600px;
+    .events{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 90%;
+      position: relative;
+      justify-content: flex-start;
+      
+      .eventList{
+        width: 100%;
+        height:75%;
+        overflow-y: scroll;
+        .eventsTitle{
+          width: 100%;
+          height:15%;
+          margin-top:10px;
+          margin-bottom:5px;
+          border-bottom: 2px solid grey;
+          font-size: 20px;
+        }
+        .eventsValue{
+          margin-top:10px;
+          font-size: 15px;
+        }
+        .addEvent{
+          float:right;
+          margin-bottom:10px;
+        }
+      }
+      .futureInformation{
+        height:25%;
+        margin-bottom:-10px;
+        border-top: 2px dashed grey;
+        width: 100%;
+        font-size: 15px;
+        >div{
+          margin-left:3px;
+          margin-top:10px;
+        }
+      }
+    }
+    .dateValues{
+      display: flex;
+      min-height: 10%;
+      flex-wrap: wrap;
+      font-size: 15px;
+      border-top: 2px solid grey;
+      border-bottom: 2px solid grey;
+      justify-content: flex-end;
+      .grid-cell {
+        min-height: 1px;
+        padding: 0;
+        position: relative;
+        width: 13.65%;
+        border-right:2px solid grey;
+         > div {
+          width: 100%;
+          > div {
+            height: 0;
+            padding: 10%;
+            text-align:center;
+            position:relative;
+            margin-top:10px;
+            >span{
+               position: absolute; 
+               left: 0; 
+               top: 0;
+            }  
+          } 
+        }
+      }
+      .cur-day-year{
+          width: 13.65 * 5%;
+      }
+        .not-cur-day{
+          display: none;
+        }
+        .cur-day{
+          display: none;
+        }
     }
   }
 }
 
 //View Event screen
-
-
-
 %custom-media-addevent{
   width:100%;
   padding-left: 10px;
 
-  @media screen and (min-width: 1001px) {
+  @media screen and (min-width: $large-size) {
     width:35%;
   }
-  @media screen and (min-width: 401px) and (max-width:1000px) {
+  @media screen and (min-width: $medium-size) and (max-width:1000px) {
     width:70%;
   }
-  @media screen and (min-width: 0px) and (max-width:400px) {
+  @media screen and (min-width: $small-size) and (max-width:400px) {
     padding-right: 10px;
   }
 }
@@ -394,7 +710,7 @@ body, html {
 .view-date:hover {
   @extend %custom-button-hover;
 }
-@media screen and (min-width: 1001px) {
+@media screen and (min-width: $large-size) {
   .viewevent{
     display: flex;
     flex-direction: row;
@@ -411,7 +727,7 @@ body, html {
   }
 }
 
-@media screen and (min-width: 401px) and (max-width:1000px) {
+@media screen and (min-width: $medium-size) and (max-width:1000px) {
   .viewevent{
     display: flex;
     flex-direction: row;
@@ -427,7 +743,7 @@ body, html {
   }
 }
 
-@media screen and (min-width: 0px) and (max-width:400px) {
+@media screen and (min-width: $small-size) and (max-width:400px) {
   .viewevent{
     display: flex;
     flex-direction: column;

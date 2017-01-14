@@ -1,22 +1,27 @@
 <div class="container">
 	<div class="firstRow">
-		<div class="monthDisplay">
-			 
-        <ul>
-            <li class="prev"><form id="prevMonth-form" method="get" action="/monthly/prev"><button type="submit" id="prevMonth" class="btn btn-default">&#10094;</button></form></li>
-            <li class="next"><form id="nextMonth-form" method="get" action="/monthly/next"><button type="submit" id="nextMonth" class="btn btn-default">&#10095;</button></form></li>
-            <li>
+		<div class="monthDisplay">	 
+        <!--	<ul>
+            	<li class="prev"><form id="prevMonth-form" method="get" action="/monthly/prev"><button type="submit" id="prevMonth" class="btn btn-default">&#10094;</button></form></li>
+            	<li class="next"><form id="nextMonth-form" method="get" action="/monthly/next"><button type="submit" id="nextMonth" class="btn btn-default">&#10095;</button></form></li>
+            	<li>
+					{{currentMonth}}<br>
+                	{{currentYear}}
+            	</li>
+        	</ul>-->
+			<div class="prev"><div><form id="prevMonth-form" method="get" action="/monthly/prev"><button type="submit" id="prevMonth" class="btn btn-default">&#10094;</button></form></div></div>
+			<div class="monthValue">
 				{{currentMonth}}<br>
-                <span style="font-size:18px">{{currentYear}}</span>
-            </li>
-        </ul>
-
+                {{currentYear}}
+            </div>
+            <div class="next"><div><form id="nextMonth-form" method="get" action="/monthly/next"><button type="submit" id="nextMonth" class="btn btn-default">&#10095;</button></form></div></div>
+            
 		</div>
 		<div class="addEvent">
 			<form id="addEvnt-form" method="post" action="/monthly/addevent">
 			<input type="hidden" id="dateValue" name="dateValue" value="{{dateValue}}">
 			<input type="hidden" id="checkValue" name="checkValue" value="Y">
-			<button type="submit" id="p-submit" class="eventBtn">AddEvent</button>
+			<button type="submit" id="p-submit" class="eventBtn">Add Event</button>
 			</form>
 		</div>
 
@@ -37,27 +42,36 @@
 			{{#each currMonth}}
 				{{#if this.events.events}}
 				<div class=" grid-cell">
-				{{else}}
-				<div class=" grid-cell no-events">
-				{{/if}}
 					<div>
 						<div>
-							<span>{{this.day}}</span>
-							<div>
+							<span class="dayIngrid">{{this.day}}</span>
+							<div class="dateIngrid">{{this.dayVal}}, {{this.month}} {{this.day}}</div>
+							<div class="dayevents" id="dayevents">
 								{{#each this.events.events}}
-									<div>{{this.title}}</div>
+									<div><a href="getEvent/{{this.id}}">* {{this.title}}</a></div>
 								{{/each}}
 							</div>
 						</div>
 					</div>
 				</div>
+				{{else}}
+				<div class=" grid-cell no-events">
+					<div>
+						<div>
+							<span class="dayIngrid">{{this.day}}</span>
+							<div class="dayevents" id="dayevents">
+								{{#each this.events.events}}
+									<div><a href="getEvent/{{this.id}}">{{this.title}}</a></div>
+								{{/each}}
+							</div>
+						</div>
+					</div>
+				</div>
+				{{/if}}
+			
 			{{/each}}
-
 			{{#each nextMonth}}
 				<div class=" grid-cell next-month"><div><div><span>{{this.day}}</span></div></div></div>
-			{{/each}}	
-			
-			
+			{{/each}}
 	</div>
-</div>
 </div>

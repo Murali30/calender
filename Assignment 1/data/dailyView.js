@@ -13,13 +13,13 @@ let exportedMethods = {
                 if(x.month === month)
                     if(x.year === year)
                         {
-                            console.log("All check done");
+                            //console.log("All check done");
                             return x;
                         }
                             
                 });
 
-                console.log(dailyEventObj);
+                //console.log(dailyEventObj);
             return Promise.resolve(dailyEventObj);
         })
     }

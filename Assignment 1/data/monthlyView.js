@@ -33,13 +33,13 @@ let exportedMethods = {
                 if(x.month === month)
                     if(x.year === year)
                         {
-                            console.log("All check done");
+                            //console.log("All check done");
                             return x;
                         }
                             
                 });
 
-                console.log(monthEventObj);
+                //console.log(monthEventObj);
             return Promise.resolve(monthEventObj);
         })
 
@@ -66,7 +66,7 @@ let exportedMethods = {
 
         return this.getCurrentEvents().then((eventFile)=>{
 
-            console.log("Starting of the method")
+            //console.log("Starting of the method")
             if(typeof insertData.title!=="string") throw "title must be a string";
             if(!insertData.title) throw "title cannot be empty";
             if(typeof insertData.location!=="string") throw "location must be a string";
@@ -74,7 +74,7 @@ let exportedMethods = {
             if(typeof insertData.description!=="string") throw "Description must be a string";
             if(!insertData.description) throw "Description cannot be empty";
 
-            console.log("After the validation");
+            //console.log("After the validation");
 
 
             var eventObj = JSON.parse(eventFile);
@@ -106,13 +106,13 @@ let exportedMethods = {
                     if(x.month === (dateVal.getMonth()+1))
                         if(x.year === dateVal.getFullYear())
                         {
-                            console.log("All check done");
+                            //console.log("All check done");
                             return x;
                         }
                             
                 }).shift();
 
-                console.log(oneEventObj + "oneEventObj before condition");
+                //console.log(oneEventObj + "oneEventObj before condition");
             if(eventObj.length == 0 || !oneEventObj)
             {
                 addEventObj.title = insertData.title;
@@ -127,7 +127,7 @@ let exportedMethods = {
 
                 eventObj.push(addDateObj);
 
-                console.log(eventObj);
+                //console.log(eventObj);
 
                 return this.saveEvents(eventObj).then((fulfilled)=>{
                     if(fulfilled)
@@ -137,7 +137,7 @@ let exportedMethods = {
             }
             else
             {
-                console.log(oneEventObj);
+                //console.log(oneEventObj);
                 addEventObj.title = insertData.title;
                 addEventObj.location = insertData.location;
                 addEventObj.description = insertData.description;

@@ -24,6 +24,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "handlebars": "^4.0.5",
     "moment": "^2.15.1",
-    "node-uuid": "^1.4.7"
+    "node-uuid": "^1.4.7",
+    "xss": "^0.2.15"
   }
 }
